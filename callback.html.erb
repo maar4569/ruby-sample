@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag "mobile-angular-ui-hover.min.css" , "mobile-angular-ui-base.min.css","mobile-angular-ui-desktop.min.css"  %>
+<%= javascript_include_tag("angular.min.js","angular-route.min.js","mobile-angular-ui.min.js") %>
+<div id="user">
+  <p>Hello, <%= @name %> さん</p>
+  <div id="main">
+    <p>更新メニュー/<p>
+    <p>月次処理</p>a
+    <%= button_to "今月の食費総額(ベータ運用中)", :controller => 'sessions', :action =>"updateFoodsThisMonth" %>
+    <%= button_to "今月のカテゴリ別費用(ベータ運用中)" ,:controller=> 'sessions' , :action => "updateEachCategoryThisMonth" %> 
+    <p>年間データ更新</p>	   
+    <%= link_to "食費明細(ベータ運用中)", :controller => 'sessions', :action =>"updateAllFoodExpenses" %>
+    <%= link_to "カテゴリ別費用(開発中)" ,:controller=> 'sessions' , :action => "updateEachCategoryThisMonth" %> 
+
+    <p>データ出力</p>
+    <%= button_to "カテゴリデータ出力" ,:controller=>'sessions' , :action => "homeCategory2JsonFile" %>
+    <%= button_to "ジャンルデータ出力" ,:controller=>'sessions' , :action => "homeGenre2JsonFile" %>
+    <%= form_tag "/sessions/zaim2JsonFile" do %>
+	    <%= date_select("srchdte","dtyr",:start_year=>2013,:end_year=>Time.now.year,:use_month_numbers=>true,:discard_day=>true,:use_two_digit_numbers=>true) %>
+      <%= submit_tag "指定月のデータを出力"%>
+    <% end %>
+ </div>
+</div>
